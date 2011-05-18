@@ -1,0 +1,64 @@
+<script type="text/javascript">
+  (function($){
+      $(document).ready(function(){
+          $("#tabs").tabs();
+
+           var latlng = new google.maps.LatLng(<%= @developer.address.location.langitude;%>, <%= @developer.address.location.latitude;%>);
+           var myOptions = {
+              zoom: 16,
+              center: latlng,
+              mapTypeId: google.maps.MapTypeId.SATELLITE
+           };
+           var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+           var marker = new google.maps.Marker({
+              position: latlng,
+              title: "<%= @developer.address.location.name;%>"
+           })
+           marker.setMap(map);
+      })
+  })(jQuery)
+</script>
+
+<div class="event_format">
+  <div class="company_info">
+    <div id="map_canvas" class="company_map"></div>
+    <div class="company_logo"></div>
+    <div class="user_info"><%= @user.firstname;%> <%= @user.lastname;%></div>
+  </div>
+  <div id="tabs">
+  <div class="categories">
+    <ul>
+        <% count = 0 %>
+        <% @xml.css("eventFormat categories category").each do |category| %>
+          <li><a href="#tabs-<%= count %>" ><%= category.attr("name") %></a></li>
+          <% count += 1; %>
+        <% end %>
+    </ul>
+  </div>
+  <% count = 0 %>
+  <% @xml.css("eventFormat categories category").each do |category| %>
+  <div id="tabs-<%= count %>" class="category_detail">
+     <% category.css("item").each do |item| %>
+        <div class="item">
+          <div class="image"><img src="<%= item.css("image")[0].content %>"/></div>
+          <h3><%= item.css("name")[0].content %></h3>
+          <div class="details"><ol>
+          <% item.css("details detail").each do |detail| %>
+            <li><b><%= detail.css("label")[0].content %>:</b> <%= detail.css("description")[0].content %></li>
+          <% end %>
+          </ol></div>
+          <div class="description">
+            <p><%= item.css("item_description")[0].content %></p>
+          </div>
+          <div class="extra"><ol>
+          <% item.css("extra detail").each do |extra| %>
+            <li><a href=""><%= extra.css("label")[0].content %></a></li>
+          <% end %>
+          </ol></div>
+        </div>
+     <% end %>
+  </div>
+  <% count += 1; %>
+  <% end %>
+  </div>
+</div>
