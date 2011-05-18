@@ -9,99 +9,95 @@ body{
 	min-width:		1100px;
 	background:		url(../images/layout/menu-bg.png)repeat-x;
 }
-	.header .logo{
-		margin:		20px;
-		width:		300px;
-	}
-		.header .menu{
-			margin:			-17px 0 0 575px;
-			width:			500px;
-			height:			50px;
-			float:			left;
-		}
-			.header .menu li{
-				display:			inline;
-				list-style-type:	none;
-			}
-				.header .menu a{
-					margin:				0 5px;
-					text-decoration:	none;
-					color:				#FFF;
-					line-height:		30px;
-					padding:			10px 20px;
-					font-weight:		bold;
-				}
-					.header .menu a:hover{
-						color:				#000;
-						padding-bottom:		20px;
-						background-color:	white;
-						-moz-border-radius: 5px;
-						border-radius:		5px;
-					}
-						.header .menu a.active{
-							color: #000;
-							padding-bottom: 20px;
-							background-color: white;
-							-moz-border-radius: 5px;
-							border-radius: 5px;
-						}
+.header .logo{
+    margin:		20px;
+    width:		300px;
+}
+.header .menu{
+    margin:			-17px 0 0 575px;
+    width:			500px;
+    height:			50px;
+    float:			left;
+}
+.header .menu li{
+    display:			inline;
+    list-style-type:	none;
+}
+.header .menu a{
+    margin:				0 5px;
+    text-decoration:	none;
+    color:				#FFF;
+    line-height:		30px;
+    padding:			10px 20px;
+    font-weight:		bold;
+}
+.header .menu a:hover{
+    color:				#000;
+    padding-bottom:		20px;
+    background-color:	white;
+    -moz-border-radius: 5px;
+    border-radius:		5px;
+}
+.header .menu a.active{
+    color: #000;
+    padding-bottom: 20px;
+    background-color: white;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
 .container{
 	height:				550px;
 	width:				100%;
 	min-width:			1100px;
-	float:				left;
 }
-	.container div.agenda-menu{
-		float:				left;
-		width:				200px;
-		margin:				0	0 -20px -16px;
-	}
-		.container .agenda-menu li{
-			margin:				-4px;
-			display:			inline;
-			list-style-type:	none;
-			border: 1px solid	#cbcbcb;
-			background-color:	#eaeaea;
-			-moz-border-radius: 2px;
-			border-radius:		2px;
-			padding:			8px;
-		}
-			.container div.agenda-menu li a{
-				text-decoration:	none;
-				color:				#000;
-				font-size:			12px;
-			}
-				.container div.agenda-menu li a:hover{
-					font-weight:		bold;
-				}
-					.container div.agenda-menu li{
-						background-color:	#f2f2f2;
-					}
-
-
-						.container div.agenda-menu li.active{
-							font-weight:		bold;
-							background-color:	#eaeaea;
-						}
-							.container div.agenda, div.content{
-								border: 1px solid	#cbcbcb;
-								background-color:	#eaeaea;
-								float:				left;
-								height:				100%;
-								-moz-border-radius: 2px;
-								border-radius:		2px;
-								padding:			5px;
-
-							}
-								.container div.agenda{
-									clear:			left;
-									width:			355px;
-									margin:			8px 20px;
-								}
-									.container div.content{
-										width:		625px;
-										margin-top:		8px;
-									}
+div.agenda{
+    width:			355px;
+    margin:			8px 20px;
+}
+div.agenda .agenda-menu ul{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    height: 40px;
+    width: 100%;
+}
+div.agenda .agenda-menu ul li{
+    display:			block;
+    float:              left;
+    border: 1px solid	#cbcbcb;
+    background-color:	#eaeaea;
+    -moz-border-radius: 2px;
+    border-radius:		2px;
+    padding:			8px;
+}
+div.agenda div.agenda-menu ul li a{
+    text-decoration:	none;
+    color:				#000;
+    font-size:			12px;
+}
+div.agenda div.agenda-menu ul li a:hover{
+    font-weight:		bold;
+}
+div.agenda div.agenda-menu ul li{
+    background-color:	#f2f2f2;
+}
+div.agenda div.agenda-menu ul li.active{
+    font-weight:		bold;
+    background-color:	#eaeaea;
+}
+div.agenda, div.content{
+    border: 1px solid	#cbcbcb;
+    background-color:	#eaeaea;
+    float:				left;
+    height:				100%;
+    -moz-border-radius: 2px;
+    border-radius:		2px;
+    padding:			5px;
+}
+div.content{
+    width:		625px;
+    margin-top:		8px;
+}
 .company_info .company_map{
     float: left;
     width: 295px;

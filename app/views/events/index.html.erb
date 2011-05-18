@@ -1,0 +1,257 @@
+<script>
+  jQuery(document).ready(function(){
+      jQuery('.fc-button-agendaDay').addClass('.fc-button-agendaDay active');
+      // page is now ready, initialize the calendar...
+      jQuery('#calendar').fullCalendar({
+          editable: true,
+          header: {
+              left: 'today, prev, next',
+              center: 'title',
+              right: 'agendaDay,agendaWeek,month'
+          },
+          defaultView: 'agendaDay',
+          height: 500,
+          slotMinutes: 15,
+          loading: function(bool){
+              if (bool)
+                  jQuery('#loading').show();
+              else
+                  jQuery('#loading').hide();
+          },
+          events: "/events/get_events",
+          timeFormat: 'h:mm t{ - h:mm t} ',
+          dragOpacity: "0.5",
+          eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+//              if (confirm("Are you sure about this change?")) {
+                  moveEvent(event, dayDelta, minuteDelta, allDay);
+//              }
+//              else {
+//                  revertFunc();
+//              }
+          },
+          
+          eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+//              if (confirm("Are you sure about this change?")) {
+                  resizeEvent(event, dayDelta, minuteDelta);
+//              }
+//              else {
+//                  revertFunc();
+//              }
+          },
+          
+          eventClick: function(event, jsEvent, view){
+              showEventDetails(event);
+          }
+      
+      });
+
+      jQuery('.fc-button-month').live('click', function() {
+          jQuery('#calendar').css('width','1024px');
+          jQuery('#calendar').html('');
+          jQuery('.content').hide();
+          jQuery('.fc-button-month').addClass('.fc-button-month active');
+          jQuery('.fc-button-agendaDay').removeClass('active');
+          jQuery('.fc-button-agendaWeek').removeClass('active');
+
+          // page is now ready, initialize the calendar...
+          jQuery('#calendar').fullCalendar({
+              editable: true,
+              header: {
+                  left: 'today, prev, next',
+                  center: 'title',
+                  right: 'agendaDay,agendaWeek,month'
+              },
+              defaultView: 'month',
+              height: 500,
+              slotMinutes: 15,
+              loading: function(bool){
+                  if (bool)
+                      jQuery('#loading').show();
+                  else
+                      jQuery('#loading').hide();
+              },
+              events: "/events/get_events",
+              timeFormat: 'h:mm t{ - h:mm t} ',
+              dragOpacity: "0.5",
+              eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+    //              if (confirm("Are you sure about this change?")) {
+                      moveEvent(event, dayDelta, minuteDelta, allDay);
+    //              }
+    //              else {
+    //                  revertFunc();
+    //              }
+              },
+
+              eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+    //              if (confirm("Are you sure about this change?")) {
+                      resizeEvent(event, dayDelta, minuteDelta);
+    //              }
+    //              else {
+    //                  revertFunc();
+    //              }
+              },
+
+              eventClick: function(event, jsEvent, view){
+                  showEventDetails(event);
+              }
+
+          });
+      });
+
+      jQuery('.fc-button-agendaDay').live('click',function() {
+          jQuery('#calendar').css('width','365px');
+          jQuery('#calendar').html('');
+          jQuery('.content').show();
+          jQuery('.fc-button-agendaDay').addClass('.fc-button-agendaDay active');
+          jQuery('.fc-button-month').removeClass('active');
+          jQuery('.fc-button-agendaWeek').removeClass('active');
+          // page is now ready, initialize the calendar...
+          jQuery('#calendar').fullCalendar({
+              editable: true,
+              header: {
+                  left: 'today, prev, next',
+                  center: 'title',
+                  right: 'agendaDay,agendaWeek,month'
+              },
+              defaultView: 'agendaDay',
+              height: 500,
+              slotMinutes: 15,
+              loading: function(bool){
+                  if (bool)
+                      jQuery('#loading').show();
+                  else
+                      jQuery('#loading').hide();
+              },
+              events: "/events/get_events",
+              timeFormat: 'h:mm t{ - h:mm t} ',
+              dragOpacity: "0.5",
+              eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+    //              if (confirm("Are you sure about this change?")) {
+                      moveEvent(event, dayDelta, minuteDelta, allDay);
+    //              }
+    //              else {
+    //                  revertFunc();
+    //              }
+              },
+
+              eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+    //              if (confirm("Are you sure about this change?")) {
+                      resizeEvent(event, dayDelta, minuteDelta);
+    //              }
+    //              else {
+    //                  revertFunc();
+    //              }
+              },
+
+              eventClick: function(event, jsEvent, view){
+                  showEventDetails(event);
+              }
+
+          });
+      });
+
+      jQuery('.fc-button-agendaWeek').live('click',function() {
+          jQuery('#calendar').css('width','1024px');
+          jQuery('#calendar').html('');
+          jQuery('.content').hide();
+          jQuery('.fc-button-agendaWeek').addClass('.fc-button-agendaWeek active');
+          jQuery('.fc-button-agendaDay').removeClass('active');
+          jQuery('.fc-button-month').removeClass('active');
+          // page is now ready, initialize the calendar...
+          jQuery('#calendar').fullCalendar({
+              editable: true,
+              header: {
+                  left: 'today, prev, next',
+                  center: 'title',
+                  right: 'agendaDay,agendaWeek,month'
+              },
+              defaultView: 'agendaWeek',
+              height: 500,
+              slotMinutes: 15,
+              loading: function(bool){
+                  if (bool)
+                      jQuery('#loading').show();
+                  else
+                      jQuery('#loading').hide();
+              },
+              events: "/events/get_events",
+              timeFormat: 'h:mm t{ - h:mm t} ',
+              dragOpacity: "0.5",
+              eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+    //              if (confirm("Are you sure about this change?")) {
+                      moveEvent(event, dayDelta, minuteDelta, allDay);
+    //              }
+    //              else {
+    //                  revertFunc();
+    //              }
+              },
+
+              eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+    //              if (confirm("Are you sure about this change?")) {
+                      resizeEvent(event, dayDelta, minuteDelta);
+    //              }
+    //              else {
+    //                  revertFunc();
+    //              }
+              },
+
+              eventClick: function(event, jsEvent, view){
+                  showEventDetails(event);
+              }
+
+          });
+      });
+
+  });
+</script>
+<div class="header">
+			<div class="logo">
+				<img src="images/layout/logo.png" alt="Logo Minor WT Groep 2 Agenda" />
+			</div>
+			<div class="menu">
+			<ul>
+				<li><a href="#" class="active">Agenda</a></li>
+				<li><a href="#">Locaties</a></li>
+				<li><a href="#">Contactpersonen</a></li>
+			</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div class="agenda-menu">
+				<ul>
+					<li class="fc-button-agendaDay"><a href="#" >Dag</a></li>
+                    <li class="fc-button-agendaWeek"><a href="#">Week</a></li>
+					<li class="fc-button-month"><a href="#">Maand</a></li>
+				</ul>
+			</div>
+            <div id="create-event">
+                <%=link_to 'Create Event', {:action => :new}, :remote => true, :before => "jQuery('#loading').show()", :complete => "jQuery('#loading').hide()" %>
+            </div>
+			<div id="calendar">
+
+			<div>
+
+</div>
+<div id = "desc_dialog" style ="display:none;">
+  <div id = "event_desc">
+  </div>
+  <br/>
+  <br/>
+  <div id = "event_actions">
+    <span id = "edit_event"></span>
+    <span id = "delete_event"></span>
+  </div>
+</div>
+
+<div id = "create_event_dialog" style ="display:none;" >
+  <div id = "create_event">
+  </div>
+</div>
+</div>
+
+<div class="content">
+			c
+</div>
+</div>
+
+</body>
