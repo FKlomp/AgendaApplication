@@ -1,0 +1,9 @@
+page.replace_html 'create_event', :partial => 'form'
+page<<
+    "jQuery('#create_event_dialog').dialog({
+        title: 'New Event',
+        modal: true,
+        width: 500,
+        close: function(event, ui) { jQuery('#create_event_dialog').dialog('destroy') }
+
+    });"
