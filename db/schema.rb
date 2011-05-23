@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table "locations", :force => true do |t|
     t.string "name",      :limit => 45
-    t.float  "langitude", :limit => 10
-    t.float  "latitude",  :limit => 10
+    t.float  "langitude"
+    t.float  "latitude"
   end
 
   create_table "users", :force => true do |t|
