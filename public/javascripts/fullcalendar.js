@@ -204,7 +204,7 @@ $.fn.fullCalendar = function(options) {
 		}
 
 
-		
+
 		/* View Rendering
 		-----------------------------------------------------------------------------*/
 
@@ -682,9 +682,7 @@ $.fn.fullCalendar = function(options) {
 		if (sections) {
 			header = $("<table class='fc-header'/>")
 				.append($("<tr/>")
-                    .append($("<td class='fc-header-right'/>").append(buildSection(sections.right))))
-					.append($("<td class='fc-header-left'/>").append(buildSection(sections.left)))
-					.append($("<td class='fc-header-center'/>").append(buildSection(sections.center)))
+					.append($("<td class='fc-header-left'/>").append(buildSection(sections.left))))
 				.prependTo(element);
 		}
 		function buildSection(buttonStr) {
@@ -696,70 +694,77 @@ $.fn.fullCalendar = function(options) {
 					}
 					var prevButton;
 					$.each(this.split(','), function(j, buttonName) {
-                        var buttonClick;
-                        if (publicMethods[buttonName]) {
-                            buttonClick = publicMethods[buttonName];
-                        }
-                        else if (views[buttonName]) {
-                            buttonClick = function() {
-                                button.removeClass(tm + '-state-hover');
-                                changeView(buttonName)
-                            };
-                        }
-                        if (buttonClick) {
-                            if (prevButton) {
-                                prevButton.addClass(tm + '-no-right');
-                            }
-                            var button,
-                                icon = options.theme ? smartProperty(options.buttonIcons, buttonName) : null,
-                                text = smartProperty(options.buttonText, buttonName);
-                            if (icon) {
-                                button = $("<div class='fc-button-" + buttonName + ">" +
-                                    "<a><span class='ui-icon ui-icon-" + icon + "'/></a></div>");
-                            }
-                            else if (text) {
-                                button = $("<div class='fc-button-" + buttonName + ">" +
-                                    "<a><span>"+text+"</span></a></div>");
-                            }
-                            if (button) {
-                                button
-                                    .click(function() {
-                                        if (!button.hasClass(tm + '-state-disabled')) {
-                                            buttonClick();
-                                        }
-                                    })
-                                    .mousedown(function() {
-                                        button
-                                            .not('.' + tm + '-state-active')
-                                            .not('.' + tm + '-state-disabled')
-                                            .addClass(tm + '-state-down');
-                                    })
-                                    .mouseup(function() {
-                                        button.removeClass(tm + '-state-down');
-                                    })
-                                    .hover(
-                                        function() {
-                                            button
-                                                .not('.' + tm + '-state-active')
-                                                .not('.' + tm + '-state-disabled')
-                                                .addClass(tm + '-state-hover');
-                                        },
-                                        function() {
-                                            button
-                                                .removeClass(tm + '-state-hover')
-                                                .removeClass(tm + '-state-down');
-                                        }
-                                    )
-                                    .appendTo($("<td/>").appendTo(tr));
-                                if (prevButton) {
-                                    prevButton.addClass(tm + '-no-right');
-                                }else{
-                                    button.addClass(tm + '-corner-left');
-                                }
-                                prevButton = button;
-                            }
-                        }
-
+						if (buttonName == 'title') {
+							tr.append("<td><h2 class='fc-header-title'>&nbsp;</h2></td>");
+							if (prevButton) {
+								prevButton.addClass(tm + '-corner-right');
+							}
+							prevButton = null;
+						}else{
+							var buttonClick;
+							if (publicMethods[buttonName]) {
+								buttonClick = publicMethods[buttonName];
+							}
+							else if (views[buttonName]) {
+								buttonClick = function() {
+									button.removeClass(tm + '-state-hover');
+									changeView(buttonName)
+								};
+							}
+							if (buttonClick) {
+								if (prevButton) {
+									prevButton.addClass(tm + '-no-right');
+								}
+								var button,
+									icon = options.theme ? smartProperty(options.buttonIcons, buttonName) : null,
+									text = smartProperty(options.buttonText, buttonName);
+								if (icon) {
+									button = $("<div class='fc-button-" + buttonName + " ui-state-default'>" +
+										"</div>");
+								}
+								else if (text) {
+									button = $("<div class='fc-button-" + buttonName + " " + tm + "-state-default'>" +
+										"</div>");
+								}
+								if (button) {
+									button
+										.click(function() {
+											if (!button.hasClass(tm + '-state-disabled')) {
+												buttonClick();
+											}
+										})
+										.mousedown(function() {
+											button
+												.not('.' + tm + '-state-active')
+												.not('.' + tm + '-state-disabled')
+												.addClass(tm + '-state-down');
+										})
+										.mouseup(function() {
+											button.removeClass(tm + '-state-down');
+										})
+										.hover(
+											function() {
+												button
+													.not('.' + tm + '-state-active')
+													.not('.' + tm + '-state-disabled')
+													.addClass(tm + '-state-hover');
+											},
+											function() {
+												button
+													.removeClass(tm + '-state-hover')
+													.removeClass(tm + '-state-down');
+											}
+										)
+										.appendTo($("<td/>").appendTo(tr));
+									if (prevButton) {
+										prevButton.addClass(tm + '-no-right');
+									}else{
+										button.addClass(tm + '-corner-left');
+									}
+									prevButton = button;
+								}
+							}
+						}
 					});
 					if (prevButton) {
 						prevButton.addClass(tm + '-corner-right');
