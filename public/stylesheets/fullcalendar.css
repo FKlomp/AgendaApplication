@@ -604,7 +604,7 @@ table.fc-header {
 /* resizable */
 
 .fc-event-vert .ui-resizable-s {
-	bottom: 0        !important; /* importants override pre jquery ui 1.7 styl */
+	bottom: 0        !important; /* importants override pre jquery ui 1.7  */
 	width: 100%      !important;
 	height: 8px      !important;
 	line-height: 8px !important;
